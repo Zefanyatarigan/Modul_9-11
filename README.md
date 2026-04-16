@@ -333,3 +333,100 @@ Setelah data diterima, program menampilkan data ke dalam tabel dengan kolom:
 Data ditampilkan tanpa reload halaman.
 
 ---
+
+## 8. Alur Kerja Program
+Alur kerja aplikasi adalah sebagai berikut:
+
+1. User membuka halaman utama Laravel
+2. Halaman menampilkan judul **Data Mahasiswa** dan tombol **Tampilkan Data**
+3. Saat tombol diklik, AJAX `fetch()` dijalankan
+4. Request dikirim ke route `/data-mahasiswa`
+5. Route memanggil `MahasiswaController`
+6. Controller membaca file `mahasiswa.json`
+7. Data dikirim kembali ke browser dalam format JSON
+8. JavaScript menerima data tersebut
+9. Data ditampilkan ke dalam tabel tanpa reload halaman
+
+---
+
+## 9. Cara Menjalankan Program
+Langkah-langkah menjalankan project:
+
+### 1. Buka CMD
+Masuk ke drive dan folder project:
+
+```bash
+E:
+cd "E:\Kuliah\Semester 6\praktikum abp\Modul_9-11"
+```
+
+### 2. Jalankan Laravel
+```bash
+php artisan serve
+```
+
+### 3. Buka browser
+Akses alamat berikut:
+
+```text
+http://127.0.0.1:8000
+```
+
+Atau langsung dari CMD:
+
+```bash
+start chrome http://127.0.0.1:8000
+```
+
+### 4. Tampilkan data
+Klik tombol **Tampilkan Data**, maka data mahasiswa akan muncul dalam bentuk tabel.
+
+---
+
+## 10. Hasil Output Program
+Output program menampilkan halaman dengan judul:
+
+```text
+Data Mahasiswa
+```
+
+Lalu terdapat tombol:
+
+```text
+Tampilkan Data
+```
+
+Setelah tombol ditekan, akan muncul tabel data mahasiswa dengan isi seperti berikut:
+
+| No | Nama                           | NIM          | Kelas      | Prodi                |
+|----|--------------------------------|--------------|------------|----------------------|
+| 1  | Zefanya Brana Tertius Tarigan | 2311102028   | SI1F-11-04 | Teknik Informatika   |
+| 2  | Imu-sama                      | 231121298199 | SI1F-11-04 | One piece            |
+| 3  | Citra Lestari                 | 220100929989 | SI1F-11-04 | Teknik Industri      |
+
+---
+
+## 11. Struktur File Project
+Struktur file yang digunakan pada project ini adalah:
+
+```text
+Modul_9-11/
+├── app/
+│   └── Http/
+│       └── Controllers/
+│           └── MahasiswaController.php
+├── public/
+│   └── data/
+│       └── mahasiswa.json
+├── resources/
+│   └── views/
+│       └── home.blade.php
+└── routes/
+    └── web.php
+```
+
+---
+
+## 12. Kesimpulan
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa Laravel dapat digunakan untuk membuat aplikasi sederhana tanpa database dengan memanfaatkan file JSON sebagai sumber data. Dengan bantuan AJAX, data mahasiswa dapat ditampilkan secara dinamis tanpa reload halaman. Praktikum ini membantu memahami penggunaan Blade, route, controller, file JSON, dan AJAX dalam satu aplikasi Laravel.
+
