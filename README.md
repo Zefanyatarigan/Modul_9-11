@@ -1,59 +1,335 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ZEFANYA BRANA TERTIUS TARIGAN 
+# 2311102028
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Laporan Praktikum Laravel + AJAX
+## Menampilkan Data Mahasiswa dari File JSON Tanpa Database
 
-## About Laravel
+## 1. Tujuan Praktikum
+Praktikum ini bertujuan untuk membuat aplikasi Laravel sederhana yang dapat menampilkan data mahasiswa dari file JSON lokal menggunakan AJAX tanpa reload halaman.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 2. Deskripsi Program
+Program ini dibuat menggunakan Laravel dengan tampilan halaman utama berupa:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- judul **Data Mahasiswa**
+- tombol **Tampilkan Data**
+- tabel hasil data mahasiswa
 
-## Learning Laravel
+Data mahasiswa tidak disimpan di database, melainkan di file JSON lokal.  
+Ketika tombol **Tampilkan Data** diklik, data diambil menggunakan AJAX lalu ditampilkan ke halaman dalam bentuk tabel tanpa refresh.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 3. Lokasi Folder Project
+Project Laravel disimpan pada folder:
 
-## Laravel Sponsors
+```text
+E:\Kuliah\Semester 6\praktikum abp\Modul_9-11
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 4. Perintah CMD yang Digunakan
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Masuk ke folder project
+```bash
+E:
+cd "E:\Kuliah\Semester 6\praktikum abp\Modul_9-11"
+```
 
-## Contributing
+### Menjalankan server Laravel
+```bash
+php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Membuka project di browser Chrome
+```bash
+start chrome http://127.0.0.1:8000
+```
 
-## Code of Conduct
+### Urutan lengkap perintah CMD
+```bash
+E:
+cd "E:\Kuliah\Semester 6\praktikum abp\Modul_9-11"
+php artisan serve
+start chrome http://127.0.0.1:8000
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 5. File yang Ditambahkan
+Berikut file yang ditambahkan pada project:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1. File JSON
+```text
+public/data/mahasiswa.json
+```
 
-## License
+File ini digunakan untuk menyimpan data mahasiswa secara lokal.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 2. File Controller
+```text
+app/Http/Controllers/MahasiswaController.php
+```
+
+File ini digunakan untuk membaca file JSON lalu mengembalikan data dalam format JSON.
+
+### 3. File View Blade
+```text
+resources/views/home.blade.php
+```
+
+File ini digunakan untuk menampilkan halaman utama beserta tombol dan tabel hasil data.
+
+---
+
+## 6. File yang Diedit
+
+### File routing
+```text
+routes/web.php
+```
+
+File ini diedit untuk menambahkan route halaman utama dan route untuk mengambil data mahasiswa.
+
+---
+
+## 7. Isi Kode Program
+
+## A. File JSON
+Lokasi file:
+
+```text
+public/data/mahasiswa.json
+```
+
+Isi file:
+
+```json
+[
+    {
+        "nama": "Zefanya Brana Tertius Tarigan",
+        "nim": "2311102028",
+        "kelas": "SI1F-11-04",
+        "prodi": "Teknik Informatika"
+    },
+    {
+        "nama": "Imu-sama",
+        "nim": "231121298199",
+        "kelas": "SI1F-11-04",
+        "prodi": "One piece"
+    },
+    {
+        "nama": "Citra Lestari",
+        "nim": "220100929989",
+        "kelas": "SI1F-11-04",
+        "prodi": "Teknik Industri"
+    }
+]
+```
+
+### Penjelasan
+File JSON ini berfungsi sebagai sumber data utama. Karena pada tugas ini tidak diperbolehkan menggunakan database, maka data mahasiswa disimpan dalam file JSON lokal.
+
+---
+
+## B. File Controller
+Lokasi file:
+
+```text
+app/Http/Controllers/MahasiswaController.php
+```
+
+Isi file:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class MahasiswaController extends Controller
+{
+    public function index()
+    {
+        $path = public_path('data/mahasiswa.json');
+        $data = json_decode(file_get_contents($path), true);
+
+        return response()->json($data);
+    }
+}
+```
+
+### Penjelasan
+- `public_path('data/mahasiswa.json')` digunakan untuk mengambil lokasi file JSON
+- `file_get_contents($path)` digunakan untuk membaca isi file JSON
+- `json_decode(..., true)` digunakan untuk mengubah isi JSON menjadi array
+- `response()->json($data)` digunakan untuk mengirim data ke browser dalam format JSON
+
+---
+
+## C. File Route
+Lokasi file:
+
+```text
+routes/web.php
+```
+
+Isi file:
+
+```php
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/data-mahasiswa', [MahasiswaController::class, 'index']);
+```
+
+### Penjelasan
+- Route `/` digunakan untuk menampilkan halaman utama
+- Route `/data-mahasiswa` digunakan untuk mengambil data mahasiswa dari controller dalam format JSON
+
+---
+
+## D. File Blade
+Lokasi file:
+
+```text
+resources/views/home.blade.php
+```
+
+Isi file:
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 32px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+
+        button:hover {
+            background-color: #0b5ed7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #bfbfbf;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Mahasiswa</h1>
+
+    <button id="btnTampil">Tampilkan Data</button>
+
+    <div id="hasil"></div>
+
+    <script>
+        document.getElementById('btnTampil').addEventListener('click', function () {
+            fetch('/data-mahasiswa')
+                .then(response => response.json())
+                .then(data => {
+                    let output = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>NIM</th>
+                                    <th>Kelas</th>
+                                    <th>Prodi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+
+                    data.forEach((item, index) => {
+                        output += `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.nama}</td>
+                                <td>${item.nim}</td>
+                                <td>${item.kelas}</td>
+                                <td>${item.prodi}</td>
+                            </tr>
+                        `;
+                    });
+
+                    output += `
+                            </tbody>
+                        </table>
+                    `;
+
+                    document.getElementById('hasil').innerHTML = output;
+                })
+                .catch(error => {
+                    document.getElementById('hasil').innerHTML = '<p>Terjadi kesalahan saat mengambil data.</p>';
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+</html>
+```
+
+### Penjelasan
+Pada file Blade ini terdapat:
+
+- judul halaman **Data Mahasiswa**
+- tombol **Tampilkan Data**
+- area hasil data
+- script AJAX menggunakan `fetch()`
+
+Saat tombol diklik, JavaScript mengirim permintaan ke route `/data-mahasiswa`.  
+Setelah data diterima, program menampilkan data ke dalam tabel dengan kolom:
+
+- No
+- Nama
+- NIM
+- Kelas
+- Prodi
+
+Data ditampilkan tanpa reload halaman.
+
+---
